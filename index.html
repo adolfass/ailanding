@@ -6,35 +6,42 @@
     <title>AI-Инженер: Fullstack с нейросетями</title>
     <meta name="description" content="8-недельный курс по созданию fullstack-приложений с ИИ. От идеи до продакшена с наставником-практиком.">
     
-    <!-- Critical CSS -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+        
         :root {
-            /* Фон и текст */
-            --bg-primary: #ffffff;
-            --bg-secondary: #f8fafc;
-            --text-primary: #1e293b;
-            --text-secondary: #64748b;
-            
-            /* Акценты */
-            --accent: #6366f1;
-            --accent-hover: #4f46e5;
+            --bg-primary: #0f0f1a;
+            --bg-secondary: #1a1a2e;
+            --bg-card: rgba(30, 30, 50, 0.8);
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --accent: #8b5cf6;
+            --accent-hover: #a855f7;
+            --accent-light: rgba(139, 92, 246, 0.15);
+            --accent-gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 50%, #f472b6 100%);
             --success: #22c55e;
             --warning: #f59e0b;
-            
-            /* Границы и тени */
-            --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-            
-            /* Радиусы */
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+            --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+            --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.6);
+            --shadow-accent: 0 4px 14px rgba(139, 92, 246, 0.4);
             --radius-sm: 8px;
             --radius-md: 12px;
             --radius-lg: 16px;
+            --radius-xl: 24px;
             --radius-full: 9999px;
+            
+            --orb-purple: #8b5cf6;
+            --orb-blue: #3b82f6;
+            --orb-pink: #ec4899;
+            --orb-cyan: #06b6d4;
         }
         
-        /* Шрифты */
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
         
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
@@ -43,127 +50,915 @@
             color: var(--text-primary);
             background-color: var(--bg-primary);
             margin: 0;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         
-        h1 { font-size: 2.5rem; line-height: 1.2; font-weight: 700; }
-        h2 { font-size: 2rem; line-height: 1.3; font-weight: 700; margin: 2rem 0 1rem; }
-        h3 { font-size: 1.5rem; line-height: 1.4; font-weight: 600; }
-        p { margin: 0 0 1rem; }
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            line-height: 1.05;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin: 0 0 1.5rem;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        h2 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            line-height: 1.2;
+            font-weight: 700;
+            margin: 0 0 1rem;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+        }
+        
+        h3 {
+            font-size: 1.25rem;
+            line-height: 1.4;
+            font-weight: 600;
+            margin: 0 0 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        p { margin: 0 0 1rem; color: var(--text-secondary); }
         small { font-size: 0.875rem; color: var(--text-secondary); }
         
-        /* Карточки */
-        .card {
-            background: #fff;
-            border-radius: var(--radius-md);
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .card:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+        .section {
+            padding: 5rem 0;
+            position: relative;
+            overflow: hidden;
         }
         
-        /* Кнопки */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .bg-primary { background-color: var(--bg-primary); }
+        
+        .bg-secondary {
+            background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+        
+        .bg-gradient {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+        }
+        
+        .bg-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+        }
+        
+        .floating-orbs {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: floatOrb 20s ease-in-out infinite;
+        }
+        
+        .orb::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, currentColor 0%, transparent 70%);
+            filter: blur(60px);
+            opacity: 1;
+        }
+        
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            color: var(--orb-purple);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+            animation-duration: 25s;
+        }
+        
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            color: var(--orb-blue);
+            top: 30%;
+            left: -150px;
+            animation-delay: 3s;
+            animation-duration: 30s;
+        }
+        
+        .orb-3 {
+            width: 350px;
+            height: 350px;
+            color: var(--orb-pink);
+            bottom: 5%;
+            right: -80px;
+            animation-delay: 6s;
+            animation-duration: 22s;
+        }
+        
+        .orb-4 {
+            width: 250px;
+            height: 250px;
+            color: var(--orb-cyan);
+            top: 50%;
+            left: 15%;
+            animation-delay: 1s;
+            animation-duration: 28s;
+        }
+        
+        .orb-5 {
+            width: 300px;
+            height: 300px;
+            color: var(--orb-purple);
+            top: 55%;
+            right: 10%;
+            animation-delay: 4s;
+            animation-duration: 24s;
+        }
+        
+        .orb-6 {
+            width: 200px;
+            height: 200px;
+            color: var(--orb-pink);
+            top: 5%;
+            right: 25%;
+            animation-delay: 7s;
+            animation-duration: 26s;
+        }
+        
+        @keyframes floatOrb {
+            0%, 100% {
+                transform: translate(0, 0) scale(1) rotate(0deg);
+            }
+            25% {
+                transform: translate(50px, -60px) scale(1.1) rotate(5deg);
+            }
+            50% {
+                transform: translate(-40px, 50px) scale(0.9) rotate(-3deg);
+            }
+            75% {
+                transform: translate(-60px, -40px) scale(1.05) rotate(3deg);
+            }
+        }
+        
+        .hero {
+            padding: 8rem 0 6rem;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 300%;
+            height: 300%;
+            background: 
+                radial-gradient(ellipse at 20% 30%, rgba(139, 92, 246, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(59, 130, 246, 0.12) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 40%);
+            animation: heroGlow 15s ease-in-out infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes heroGlow {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.8;
+            }
+            33% {
+                transform: translate(2%, 3%) scale(1.05);
+                opacity: 1;
+            }
+            66% {
+                transform: translate(-2%, -1%) scale(0.98);
+                opacity: 0.9;
+            }
+        }
+        
+        .hero .container {
+            max-width: 800px;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .hero-meta span::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+        }
+        
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        
+        .card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        
+        .card:hover::before {
+            opacity: 1;
+        }
+        
+        .grid-3 {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 640px) {
+            .grid-3 {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .grid-3 {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
         .btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 0.75rem 1.5rem;
-            border-radius: var(--radius-sm);
-            font-weight: 500;
+            gap: 0.5rem;
+            padding: 0.875rem 1.75rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            font-size: 1rem;
             text-decoration: none;
             cursor: pointer;
-            transition: all 0.2s ease;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
             border: none;
-            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
         }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        
+        .btn:hover::before {
+            opacity: 1;
+        }
+        
         .btn-primary {
-            background: var(--accent);
+            background: var(--accent-gradient);
             color: #fff;
+            box-shadow: var(--shadow-accent);
         }
+        
         .btn-primary:hover {
-            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(139, 92, 246, 0.5);
         }
+        
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+        
         .btn-secondary {
             background: transparent;
-            color: var(--accent);
+            color: var(--text-primary);
             border: 2px solid var(--border);
+            box-shadow: var(--shadow-sm);
         }
+        
         .btn-secondary:hover {
             border-color: var(--accent);
+            background: var(--accent-light);
+            transform: translateY(-2px);
         }
         
-        /* Бейджи */
+        .btn-lg {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+        
+        .btn:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+        
         .badge {
-            display: inline-block;
-            padding: 0.25rem 0.75rem;
-            background: var(--accent);
-            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.85rem;
+            background: var(--accent-light);
+            color: var(--accent);
             border-radius: var(--radius-full);
-            font-size: 0.875rem;
-            font-weight: 500;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.3);
         }
         
-        /* Ссылки в блоке эксперта */
-        .expert-links {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem 1.5rem;
-            margin: 0.75rem 0 1.25rem;
-            padding: 0.75rem;
-            background: #fff;
+        .badge.popular {
+            background: var(--accent-gradient);
+            color: #fff;
+            border: none;
+        }
+        
+        .module-status {
+            display: inline-block;
+            padding: 0.25rem 0.6rem;
+            background: rgba(34, 197, 94, 0.15);
+            color: #4ade80;
             border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        
+        .module-status.recording {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+        }
+        
+        .expert-card {
+            display: grid;
+            gap: 2rem;
+            padding: 2.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .expert-card {
+                grid-template-columns: 220px 1fr;
+                align-items: start;
+            }
+        }
+        
+        .expert-photo {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .expert-photo-placeholder {
+            width: 180px;
+            height: 180px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .expert-photo-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 40%, rgba(255,255,255,0.3) 50%, transparent 60%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        .expert-info h3 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .expert-info > p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .expert-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 0.75rem;
+            margin: 1.25rem 0;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: var(--radius-md);
             border: 1px solid var(--border);
         }
+        
         .link-item {
             color: var(--text-primary);
             text-decoration: none;
             font-size: 0.9rem;
             font-weight: 500;
-            transition: color 0.2s ease;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
-            gap: 0.35rem;
+            gap: 0.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
         }
-        .link-item:hover { color: var(--accent); }
         
-        /* Mobile-first подход */
-        .container { padding: 1rem; }
-        .grid-2, .grid-3 { display: flex; flex-direction: column; gap: 1rem; }
+        .link-item:hover {
+            color: var(--accent);
+            background: var(--accent-light);
+        }
         
-        /* Планшет (≥ 640px) */
+        .achievements {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+        
+        .achievement-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: rgba(34, 197, 94, 0.08);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid #22c55e;
+        }
+        
+        .achievement-item span {
+            font-size: 1.5rem;
+        }
+        
+        .achievement-item p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .achievement-item strong {
+            display: block;
+            color: var(--text-primary);
+        }
+        
+        .tech-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .tech-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 0.8rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            transition: all 0.2s ease;
+        }
+        
+        .tech-badge:hover {
+            border-color: var(--accent);
+            background: var(--accent-light);
+            color: var(--accent);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0.5rem 0 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .price-note {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+        
+        .pricing-card {
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+        
+        .pricing-card .btn {
+            margin-top: auto;
+            width: 100%;
+        }
+        
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+        }
+        
+        .pricing-card li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-card li::before {
+            content: '✓';
+            color: var(--success);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .corporate-section {
+            text-align: center;
+            padding: 6rem 0;
+        }
+        
+        .corporate-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .corporate-section > .container > p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+        
+        .industry-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2.5rem;
+        }
+        
+        .industry-tag {
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-full);
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+        
+        .industry-tag:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background: var(--accent-light);
+        }
+        
+        .faq {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .faq-item {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        
+        .faq-item:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 1.25rem 1.5rem;
+            background: none;
+            border: none;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            transition: color 0.2s ease;
+        }
+        
+        .faq-question:hover {
+            color: var(--accent);
+        }
+        
+        .faq-question::after {
+            content: '+';
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-question[aria-expanded="true"]::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 1.5rem 1.25rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .faq-answer[hidden] {
+            display: none;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 8rem 0;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section .floating-orbs {
+            opacity: 0.5;
+        }
+        
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+        
+        .cta-section > .container > p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+        }
+        
         @media (min-width: 640px) {
-            .container { padding: 1.5rem; max-width: 640px; margin: 0 auto; }
-            .grid-2 { flex-direction: row; flex-wrap: wrap; }
+            .cta-buttons {
+                flex-direction: row;
+                justify-content: center;
+            }
         }
         
-        /* Десктоп (≥ 1024px) */
-        @media (min-width: 1024px) {
-            .container { max-width: 1024px; }
-            .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-            .expert-card { grid-template-columns: 200px 1fr; }
+        footer {
+            background: var(--bg-secondary);
+            color: #fff;
+            padding: 4rem 0 2rem;
+            border-top: 1px solid var(--border);
         }
         
-        /* Широкий экран (≥ 1440px) */
-        @media (min-width: 1440px) {
-            .container { max-width: 1200px; }
+        footer a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s ease;
         }
         
-        /* Адаптивность: ландшафтная ориентация */
-        @media (orientation: landscape) and (max-height: 500px) {
-            .hero { padding: 0.75rem; }
-            .hero h1 { font-size: 1.75rem; }
-            .hero p { font-size: 0.95rem; }
-            .btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
-            .section { padding: 1.5rem 0; }
+        footer a:hover {
+            color: var(--accent);
+        }
+        
+        .footer-content {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+        
+        .footer-logo p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        .footer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-nav a {
+            font-weight: 500;
+        }
+        
+        .footer-contacts {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            text-align: center;
+        }
+        
+        @media (min-width: 640px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                text-align: left;
+            }
+        }
+        
+        .footer-bottom p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+            margin: 0;
+        }
+        
+        .footer-bottom a {
+            font-size: 0.875rem;
+        }
+        
+        .course-image {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%);
+        }
+        
+        .testimonial-card {
+            position: relative;
+        }
+        
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 5rem;
+            font-family: Georgia, serif;
+            color: rgba(139, 92, 246, 0.2);
+            line-height: 1;
+            pointer-events: none;
+        }
+        
+        .testimonial-card p:first-of-type {
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border);
+        }
+        
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #fff;
+            font-size: 1rem;
+        }
+        
+        .testimonial-author strong {
+            display: block;
+            font-size: 0.95rem;
+            color: var(--text-primary);
+        }
+        
+        .testimonial-author em {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Секция 1: Герой -->
-    <section class="hero section bg-primary">
+    <section class="hero section">
+        <div class="floating-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="orb orb-4"></div>
+            <div class="orb orb-5"></div>
+            <div class="orb orb-6"></div>
+        </div>
         <div class="container">
             <h1>AI-Инженер: Fullstack с нейросетями</h1>
             <p>Создавайте умные приложения: от идеи до продакшена с помощью ИИ</p>
@@ -178,184 +973,188 @@
         </div>
     </section>
 
-    <!-- Секция 2: Программа курса -->
     <section id="curriculum" class="section bg-secondary">
         <div class="container">
             <h2>Программа курса</h2>
             <div class="grid-3">
-                <!-- Модуль 1 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
+                <article class="card">
+                    <span class="module-status">Новый</span>
                     <h3>Тема №1: Основы LLM и AI-кодинг</h3>
                     <p>Понимание принципов работы больших языковых моделей, промпт-инжиниринг, использование AI-ассистентов в разработке.</p>
-                </div>
-                <!-- Модуль 2 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №2: Архитектура AI-приложений: от прототипа к продакшену</h3>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №2: Архитектура AI-приложений</h3>
                     <p>Проектирование масштабируемых систем с интеграцией ИИ-компонентов, выбор архитектурных паттернов для AI-приложений.</p>
-                </div>
-                <!-- Модуль 3 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №3: Контейнеризация моделей: Docker для ML</h3>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №3: Docker для ML</h3>
                     <p>Упаковка моделей машинного обучения в контейнеры, оптимизация образов, лучшие практики деплоя ML-моделей.</p>
-                </div>
-                <!-- Модуль 4 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №4: Оркестрация в Kubernetes: запуск CV-сервисов</h3>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №4: Kubernetes для CV-сервисов</h3>
                     <p>Развертывание и управление компьютерным зрением в продакшене с помощью Kubernetes, масштабирование и мониторинг.</p>
-                </div>
-                <!-- Модуль 5 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №5: Мониторинг AI-систем: Zabbix/Grafana для нейросетей</h3>
-                    <p>Настройка систем мониторинга для отслеживания производительности моделей, обнаружения дрейфа и аномалий в работе ИИ.</p>
-                </div>
-                <!-- Модуль 6 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №6: CI/CD для ML: автоматизация обучения и деплоя</h3>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №5: Мониторинг AI-систем</h3>
+                    <p>Настройка систем мониторинга для отслеживания производительности моделей, обнаружения дрейфа и аномалий.</p>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №6: CI/CD для ML</h3>
                     <p>Построение пайплайнов непрерывной интеграции и доставки для машинного обучения, автоматическое переобучение моделей.</p>
-                </div>
-                <!-- Модуль 7 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №7: Работа с данными: пайплайны и версионирование</h3>
-                    <p>Эффективное управление данными для ML: ETL-процессы, версионирование наборов данных, обеспечение качества и воспроизводимости.</p>
-                </div>
-                <!-- Модуль 8 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №8: Оптимизация инференса: скорость и ресурсы</h3>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №7: Работа с данными</h3>
+                    <p>Эффективное управление данными для ML: ETL-процессы, версионирование наборов данных, обеспечение качества.</p>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №8: Оптимизация инференса</h3>
                     <p>Техники ускорения работы моделей: квантизация, приведение к низкой точности, использование специализированного железа.</p>
-                </div>
-                <!-- Модуль 9 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №9: Надёжность и отказоустойчивость: SLO/SLA для AI</h3>
-                    <p>Обеспечение надежной работы AI-систем в продакшене: определение целевых показателей, планирование емкости, планирование восстановления.</p>
-                </div>
-                <!-- Модуль 10 -->
-                <div class="card">
-                    <div class="module-status">В записи</div>
-                    <h3>Тема №10: Диагностика инцидентов: логи, метрики, трассировка</h3>
-                    <p>Системный подход к поиску и устранению неисправностей в AI-приложениях, использование распределенной трассировки и корреляции событий.</p>
-                </div>
-                <!-- Модуль 11 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №11: Документация архитектуры и онбординг команды</h3>
-                    <p>Создание эффективной технической документации для AI-систем, процессы ввода новых членов команды в работу с сложными ML-системами.</p>
-                </div>
-                <!-- Модуль 12 -->
-                <div class="card">
-                    <div class="module-status">Новый</div>
-                    <h3>Тема №12: Финальный проект: развёртывание полноценного AI-сервиса</h3>
-                    <p>Практическое применение всех полученных знаний: создание и деплой собственного AI-приложения от идеи до production.</p>
-                </div>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №9: SLO/SLA для AI</h3>
+                    <p>Обеспечение надежной работы AI-систем в продакшене: определение целевых показателей, планирование емкости.</p>
+                </article>
+                <article class="card">
+                    <span class="module-status recording">В записи</span>
+                    <h3>Тема №10: Диагностика инцидентов</h3>
+                    <p>Системный подход к поиску и устранению неисправностей в AI-приложениях, распределенная трассировка.</p>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №11: Документация и онбординг</h3>
+                    <p>Создание эффективной технической документации для AI-систем, процессы ввода новых членов команды.</p>
+                </article>
+                <article class="card">
+                    <span class="module-status">Новый</span>
+                    <h3>Тема №12: Финальный проект</h3>
+                    <p>Практическое применение всех полученных знаний: создание и деплой собственного AI-приложения.</p>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Секция 3: Отзывы -->
     <section class="section bg-primary">
         <div class="container">
             <h2>Что говорят участники</h2>
             <div class="grid-3">
-                <!-- Отзыв 1 -->
-                <div class="card">
+                <article class="card testimonial-card">
                     <p>"Курс полностью изменил мой подход к разработке. Теперь я уверенно интегрирую ИИ в продакшен-системы и понимаю, как обеспечить их надежную работу."</p>
-                    <p><strong>👤 Алексей Иванов</strong><br><em>🎯 Senior AI Engineer</em></p>
-                </div>
-                <!-- Отзыв 2 -->
-                <div class="card">
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">АИ</div>
+                        <div>
+                            <strong>Алексей Иванов</strong>
+                            <em>Senior AI Engineer</em>
+                        </div>
+                    </div>
+                </article>
+                <article class="card testimonial-card">
                     <p>"Очень практичный курс с множеством реальных примеров. Особенно ценны секции по мониторингу и CI/CD для ML - сразу применил на работе."</p>
-                    <p><strong>👤 Мария Петрова</strong><br><em>🎯 ML DevOps Engineer</em></p>
-                </div>
-                <!-- Отзыв 3 -->
-                <div class="card">
-                    <p>"Роман объясняет сложные концепции доступным языком. После курса я смог построить отказоустойчивую инфраструктуру для наших моделей компьютерного зрения."</p>
-                    <p><strong>👤 Дмитрий Смирнов</strong><br><em>🎯 Computer Vision Specialist</em></p>
-                </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">МП</div>
+                        <div>
+                            <strong>Мария Петрова</strong>
+                            <em>ML DevOps Engineer</em>
+                        </div>
+                    </div>
+                </article>
+                <article class="card testimonial-card">
+                    <p>"Роман объясняет сложные концепции доступным языком. После курса я смог построить отказоустойчивую инфраструктуру для CV-моделей."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">ДС</div>
+                        <div>
+                            <strong>Дмитрий Смирнов</strong>
+                            <em>Computer Vision Specialist</em>
+                        </div>
+                    </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Секция 4: Эксперт -->
     <section class="section bg-secondary">
         <div class="container">
             <h2>Ваш наставник</h2>
             <div class="expert-card card">
                 <div class="expert-photo">
-                    <!-- Используем placeholder для фото -->
-                    <div style="width: 200px; height: 200px; background: #e2e8f0; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
-                        <span style="color: #64748b; font-size: 1.5rem;">РБ</span>
-                    </div>
+                    <div class="expert-photo-placeholder">РБ</div>
                 </div>
                 <div class="expert-info">
                     <h3>Роман Богданов</h3>
                     <p>Инженер по надёжности AI-систем | DevOps | CV</p>
                     <div class="expert-links">
                         <a href="https://spb.hh.ru/resume/632885bfff00de70d90039ed1f354333647341" target="_blank" rel="noopener" class="link-item">
-                            📄 Резюме на hh.ru
+                            Резюме на hh.ru
                         </a>
                         <a href="https://romambo.ru/" target="_blank" rel="noopener" class="link-item">
-                            🌐 romambo.ru
+                            romambo.ru
                         </a>
                         <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="link-item">
-                            💬 @itforbisness
+                            @itforbisness
                         </a>
                         <a href="https://github.com/adolfass?tab=repositories" target="_blank" rel="noopener" class="link-item">
-                            💻 GitHub
+                            GitHub
                         </a>
                     </div>
-                    <p><strong>✅ Достижения:</strong></p>
-                    <ul style="text-align: left; margin-left: 1.5rem;">
-                        <li>15+ лет в ИТ, 2+ в AI</li>
-                        <li>Улучшил SLA на 5%</li>
-                        <li>-25% ложных алертов</li>
-                        <li>Построил инфраструктуру для AI-систем</li>
-                        <li>Опыт преподавания сложных технических концепций</li>
-                    </ul>
-                    <div style="margin-top: 1rem;">
-                        <span class="badge">Kubernetes</span>
-                        <span class="badge">Docker</span>
-                        <span class="badge">Zabbix</span>
-                        <span class="badge">GitLab</span>
-                        <span class="badge">Linux</span>
-                        <span class="badge">CV</span>
-                        <span class="badge">LLM</span>
+                    <div class="achievements">
+                        <div class="achievement-item">
+                            <span>15+</span>
+                            <p><strong>лет в ИТ</strong>2+ в AI-инженерии</p>
+                        </div>
+                        <div class="achievement-item">
+                            <span>+5%</span>
+                            <p><strong>SLA</strong>Улучшил показатели</p>
+                        </div>
+                        <div class="achievement-item">
+                            <span>-25%</span>
+                            <p><strong>алертов</strong>Ложных срабатываний</p>
+                        </div>
+                        <div class="achievement-item">
+                            <span>AI</span>
+                            <p><strong>инфраструктура</strong>Построил с нуля</p>
+                        </div>
+                    </div>
+                    <div class="tech-badges">
+                        <span class="tech-badge">Kubernetes</span>
+                        <span class="tech-badge">Docker</span>
+                        <span class="tech-badge">Zabbix</span>
+                        <span class="tech-badge">GitLab</span>
+                        <span class="tech-badge">Linux</span>
+                        <span class="tech-badge">CV</span>
+                        <span class="tech-badge">LLM</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Секция 5: Тарифы -->
-    <section id="pricing" class="section bg-primary">
+    <section id="pricing" class="section bg-gradient">
         <div class="container">
             <h2>Выберите формат участия</h2>
             <div class="grid-3">
-                <!-- Карточка "Старт" -->
-                <div class="card">
+                <article class="card pricing-card">
                     <h3>Старт</h3>
                     <p class="price">44 900 ₽</p>
-                    <ul style="text-align: left; margin-left: 1.5rem;">
+                    <ul>
                         <li>Доступ ко всем видеоурокам</li>
                         <li>Домашние задания с автопроверкой</li>
                         <li>Доступ в общий чат</li>
                         <li>Сертификат об окончании</li>
                     </ul>
-                    <button class="btn btn-primary">Выбрать</button>
-                </div>
-                <!-- Карточка "Профи" -->
-                <div class="card">
-                    <div class="badge popular">Популярный</div>
+                    <button class="btn btn-secondary">Выбрать</button>
+                </article>
+                <article class="card pricing-card">
+                    <span class="badge popular">Популярный</span>
                     <h3>Профи</h3>
                     <p class="price">69 900 ₽</p>
-                    <ul style="text-align: left; margin-left: 1.5rem;">
+                    <ul>
                         <li>Всё из "Старт" +</li>
                         <li>Проверка ДЗ экспертом</li>
                         <li>2 групповые консультации</li>
@@ -363,140 +1162,125 @@
                         <li>Приоритетная поддержка</li>
                     </ul>
                     <button class="btn btn-primary">Выбрать</button>
-                </div>
-                <!-- Карточка "Бизнес" -->
-                <div class="card">
+                </article>
+                <article class="card pricing-card">
                     <h3>Бизнес</h3>
-                    <p class="price">По запросу</p>
-                    <ul style="text-align: left; margin-left: 1.5rem;">
+                    <p class="price">По запросу <span class="price-note">для команд</span></p>
+                    <ul>
                         <li>Всё из "Профи" +</li>
-                        <li>Персональная программа для команды</li>
+                        <li>Персональная программа</li>
                         <li>Выделенный менеджер</li>
                         <li>Документы для юрлиц</li>
                         <li>Пост-курсовая поддержка</li>
                     </ul>
-                    <button class="btn btn-primary">Выбрать</button>
-                </div>
+                    <button class="btn btn-secondary">Связаться</button>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Секция 6: Другие курсы -->
     <section class="section bg-secondary">
         <div class="container">
             <h2>Также может быть интересно</h2>
             <div class="grid-3">
-                <!-- Другие курсы 1 -->
-                <div class="card">
-                    <img src="https://placehold.co/400x300/png?text=DevOps+для+AI-инженеров" alt="DevOps для AI-инженеров" loading="lazy">
+                <article class="card">
+                    <img src="https://placehold.co/400x200/6366f1/ffffff?text=DevOps+для+AI" alt="DevOps для AI-инженеров" class="course-image" loading="lazy">
                     <h3>DevOps для AI-инженеров</h3>
-                    <p>Автоматизация инфраструктуры для ML-моделей, практики MLOps, настройка CI/CD пайплайнов для production.</p>
+                    <p>Автоматизация инфраструктуры для ML-моделей, практики MLOps, настройка CI/CD пайплайнов.</p>
                     <a href="#" class="btn btn-secondary">Подробнее</a>
-                </div>
-                <!-- Другие курсы 2 -->
-                <div class="card">
-                    <img src="https://placehold.co/400x300/png?text=Компьютерное+зрение+in+production" alt="Компьютерное зрение в production" loading="lazy">
+                </article>
+                <article class="card">
+                    <img src="https://placehold.co/400x200/8b5cf6/ffffff?text=CV+in+Production" alt="Компьютерное зрение в production" class="course-image" loading="lazy">
                     <h3>Компьютерное зрение в production</h3>
-                    <p>Развертывание и масштабирование CV-систем, работа с видеопотоками в реальном времени, оптимизация инференса на продакшене.</p>
+                    <p>Развертывание CV-систем, работа с видеопотоками в реальном времени, оптимизация инференса.</p>
                     <a href="#" class="btn btn-secondary">Подробнее</a>
-                </div>
-                <!-- Другие курсы 3 -->
-                <div class="card">
-                    <img src="https://placehold.co/400x300/png?text=Мониторинг+распределённых+систем" alt="Мониторинг распределённых систем" loading="lazy">
+                </article>
+                <article class="card">
+                    <img src="https://placehold.co/400x200/22c55e/ffffff?text=Мониторинг+систем" alt="Мониторинг распределённых систем" class="course-image" loading="lazy">
                     <h3>Мониторинг распределённых систем</h3>
-                    <p>Наблюдение за микросервисными AI-архитектурами, сбор и анализ метрик, построение систем оповещения и восстановления.</p>
+                    <p>Наблюдение за микросервисными AI-архитектурами, сбор метрик, системы оповещения.</p>
                     <a href="#" class="btn btn-secondary">Подробнее</a>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Секция 7: Корпоративный блок -->
-    <section class="section bg-primary">
+    <section class="corporate-section section bg-primary">
         <div class="container">
             <h2>Для команд и бизнеса</h2>
             <p>Адаптируем программу под ваши задачи: промышленность, финтех, ритейл, госсектор. Обсудим детали в личном диалоге.</p>
-            <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-primary">Обсудить корпоративный формат</a>
-            <div style="margin-top: 2rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
-                <span style="background: #e2e8f0; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.9rem;">Промышленность</span>
-                <span style="background: #e2e8f0; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.9rem;">Финтех</span>
-                <span style="background: #e2e8f0; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.9rem;">Ритейл</span>
-                <span style="background: #e2e8f0; padding: 0.5rem 1rem; border-radius: var(--radius-sm); font-size: 0.9rem;">Госсектор</span>
+            <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Обсудить корпоративный формат</a>
+            <div class="industry-tags">
+                <span class="industry-tag">Промышленность</span>
+                <span class="industry-tag">Финтех</span>
+                <span class="industry-tag">Ритейл</span>
+                <span class="industry-tag">Госсектор</span>
             </div>
         </div>
     </section>
 
-    <!-- Секция 8: FAQ (аккордеон) -->
     <section class="section bg-secondary">
         <div class="container">
             <h2>Частые вопросы</h2>
             <div class="faq">
-                <!-- Вопрос 1 -->
                 <div class="faq-item">
-                    <button class="faq-question btn btn-secondary" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false">
                         Нужен ли опыт в AI для старта?
                     </button>
                     <div class="faq-answer" hidden>
-                        Нет, курс designed для начинающих в области AI. Мы начинаем с основ и постепенно переходим к продвинутым темам. Базовые знания программирования будут полезны, но не обязательны.
+                        Нет, курс рассчитан на начинающих в области AI. Мы начинаем с основ и постепенно переходим к продвинутым темам. Базовые знания программирования будут полезны, но не обязательны.
                     </div>
                 </div>
-                <!-- Вопрос 2 -->
                 <div class="faq-item">
-                    <button class="faq-question btn btn-secondary" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false">
                         Сколько времени нужно уделять курсу в неделю?
                     </button>
                     <div class="faq-answer" hidden>
                         Рекомендуется уделять 8-10 часов в неделю на просмотр лекций, выполнение домашних заданий и участие в групповых консультациях.
                     </div>
                 </div>
-                <!-- Вопрос 3 -->
                 <div class="faq-item">
-                    <button class="faq-question btn btn-secondary" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false">
                         Что если пропущу живой вебинар?
                     </button>
                     <div class="faq-answer" hidden>
                         Все занятия записываются и доступны в личном кабинете навсегда. Вы можете смотреть их в удобное время и задавать вопросы в чате или на следующей консультации.
                     </div>
                 </div>
-                <!-- Вопрос 4 -->
                 <div class="faq-item">
-                    <button class="faq-question btn btn-secondary" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false">
                         Есть ли рассрочка оплаты?
                     </button>
                     <div class="faq-answer" hidden>
                         Да, мы предоставляем возможность оплаты в рассрочку до 4 месяцев без процентов через наши партнерские банки.
                     </div>
                 </div>
-                <!-- Вопрос 5 -->
                 <div class="faq-item">
-                    <button class="faq-question btn btn-secondary" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false">
                         Как проходит проверка домашних заданий?
                     </button>
                     <div class="faq-answer" hidden>
                         Домашние задания проверяются экспертом курса с подробной обратной связью. Для практических задач предоставляются автотесты и примеры решений.
                     </div>
                 </div>
-                <!-- Вопрос 6 -->
                 <div class="faq-item">
-                    <button class="faq-question btn btn-secondary" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false">
                         Получу ли я сертификат?
                     </button>
                     <div class="faq-answer" hidden>
                         Да, все выпускники получают сертификат об окончании курса с указанием пройденных модулей и часов обучения. Сертификат проверяется через специальный верификатор на нашем сайте.
                     </div>
                 </div>
-                <!-- Вопрос 7 -->
                 <div class="faq-item">
-                    <button class="faq-question btn btn-secondary" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false">
                         Можно ли оплатить от юридического лица?
                     </button>
                     <div class="faq-answer" hidden>
                         Да, мы работаем с юридическими лицами и предоставляем все необходимые закрывающие документы: договор, счет, акт оказанных услуг.
                     </div>
                 </div>
-                <!-- Вопрос 8 -->
                 <div class="faq-item">
-                    <button class="faq-question btn btn-secondary" aria-expanded="false">
+                    <button class="faq-question" aria-expanded="false">
                         Что нужно для доступа к материалам?
                     </button>
                     <div class="faq-answer" hidden>
@@ -507,46 +1291,51 @@
         </div>
     </section>
 
-    <!-- Секция 9: Финальный CTA -->
-    <section class="section bg-primary">
+    <section class="cta-section section">
+        <div class="floating-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+            <div class="orb orb-4"></div>
+            <div class="orb orb-5"></div>
+            <div class="orb orb-6"></div>
+        </div>
         <div class="container">
             <h2>Готовы запустить AI в продакшен?</h2>
             <p>Начните обучение сегодня — первые уроки уже доступны</p>
             <div class="cta-buttons">
-                <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Написать в Telegram @itforbisness</a>
-                <a href="https://spb.hh.ru/resume/632885bfff00de70d90039ed1f354333647341" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">Есть вопросы? Посмотрите резюме эксперта</a>
+                <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Написать в Telegram</a>
+                <a href="https://spb.hh.ru/resume/632885bfff00de70d90039ed1f354333647341" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">Есть вопросы? Резюме эксперта</a>
             </div>
         </div>
     </section>
 
-    <!-- Секция 10: Footer -->
-    <footer class="section bg-secondary">
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-logo">
                     <h3>AI-Инженер: Fullstack с нейросетями</h3>
                     <p>Курс от Романа Богданова</p>
                 </div>
-                <div class="footer-nav">
+                <nav class="footer-nav">
                     <a href="#curriculum">Программа</a>
                     <a href="#pricing">Тарифы</a>
                     <a href="#faq">Вопросы</a>
-                </div>
+                </nav>
                 <div class="footer-contacts">
-                    <a href="https://spb.hh.ru/resume/632885bfff00de70d90039ed1f354333647341" target="_blank" rel="noopener">📄 Резюме</a>
-                    <a href="https://romambo.ru/" target="_blank" rel="noopener">🌐 Сайт</a>
-                    <a href="https://t.me/itforbisness" target="_blank" rel="noopener">💬 Telegram</a>
-                    <a href="https://github.com/adolfass?tab=repositories" target="_blank" rel="noopener">💻 GitHub</a>
+                    <a href="https://spb.hh.ru/resume/632885bfff00de70d90039ed1f354333647341" target="_blank" rel="noopener">Резюме</a>
+                    <a href="https://romambo.ru/" target="_blank" rel="noopener">Сайт</a>
+                    <a href="https://t.me/itforbisness" target="_blank" rel="noopener">Telegram</a>
+                    <a href="https://github.com/adolfass?tab=repositories" target="_blank" rel="noopener">GitHub</a>
                 </div>
-                <div class="footer-bottom">
-                    <p>© 2024–2025 Роман Богданов. Все права защищены.</p>
-                    <a href="#">Политика конфиденциальности</a>
-                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024–2025 Роман Богданов. Все права защищены.</p>
+                <a href="#">Политика конфиденциальности</a>
             </div>
         </div>
     </footer>
 
-    <!-- JSON-LD Schema.org для курса -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -572,27 +1361,22 @@
     }
     </script>
 
-    <!-- JavaScript for interactivity -->
     <script>
-        // Аккордеон для FAQ
         document.querySelectorAll('.faq-question').forEach(btn => {
             btn.addEventListener('click', () => {
                 const answer = btn.nextElementSibling;
                 const expanded = btn.getAttribute('aria-expanded') === 'true';
                 btn.setAttribute('aria-expanded', !expanded);
                 answer.hidden = expanded;
-                answer.style.maxHeight = expanded ? '0' : answer.scrollHeight + 'px';
             });
         });
 
-        // Плавная прокрутка для якорей
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', e => {
                 e.preventDefault();
                 const target = document.querySelector(anchor.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    // Закрыть мобильное меню, если открыто (опционально)
                 }
             });
         });
