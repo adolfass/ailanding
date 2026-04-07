@@ -1,0 +1,7 @@
+✅ Единый файл: index.html
+✅ HTML5 semantic markup (<header>, <main>, <section>, <footer>)
+✅ CSS: inline в <style> в <head> (критический) + опционально Tailwind CDN
+✅ JS: inline в <script> перед </body>, только для интерактива
+✅ Изображения: placeholder (https://placehold.co/) или внешние URL с lazy loading
+✅ Вес файла: < 500KB без учёта изображений
+✅ Никаких внешних зависимостей, требующих npm/yarn/build

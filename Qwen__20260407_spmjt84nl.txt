@@ -1,0 +1,6 @@
+[ ] Critical CSS inlined в <head>
+[ ] defer/async для внешних скриптов (если используются)
+[ ] loading="lazy" для изображений ниже первого экрана
+[ ] preload для шрифтов и hero-изображения
+[ ] Минификация HTML/CSS/JS (удаление комментариев, лишних пробелов)
+[ ] Использование system fonts как fallback для Inter

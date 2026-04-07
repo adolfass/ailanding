@@ -1,0 +1,9 @@
+[✓] Эксперт: Роман Богданов (имя заполнено)
+[✓] Резюме: ссылка на hh.ru корректна
+[✓] Сайт: https://romambo.ru/
+[✓] Telegram: https://t.me/itforbisness
+[✓] GitHub: https://github.com/adolfass?tab=repositories
+[✓] Нет упоминаний компаний в требованиях
+[✓] Преподавательский опыт без возрастных групп
+[ ] Следовать этапам workflow (RESEARCH → DEPLOY)
+[ ] Проверить по критериям приёмки (раздел 8)

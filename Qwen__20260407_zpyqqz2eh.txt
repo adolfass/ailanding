@@ -1,0 +1,26 @@
+🎯 Должность: Инженер по надёжности AI-систем | DevOps | Computer Vision Production
+
+🔗 Контакты:
+• Резюме: https://spb.hh.ru/resume/632885bfff00de70d90039ed1f354333647341
+• Сайт: https://romambo.ru/
+• Telegram: https://t.me/itforbisness
+• GitHub: https://github.com/adolfass?tab=repositories
+
+📊 Ключевые метрики:
+• 15+ лет общего стажа в ИТ
+• 2+ года работы с AI/CV в production
+• Улучшение SLA на +5% за год
+• Снижение ложных алертов мониторинга на -25%
+• Ускорение восстановления после инцидентов на -30 минут
+
+🔧 Технологический стек:
+• AI/ML: Computer Vision, LLM-интеграции, DeepSeek
+• DevOps: Docker, Kubernetes (Rancher, Portainer), kubectl
+• CI/CD: GitLab CI, автоматизация деплоя
+• Monitoring: Zabbix, Grafana, Cacti
+• OS: Linux (AstraLinux, Ubuntu), Windows Server
+• Network: L2/L3 коммутация, VPN, MikroTik/Cisco
+
+💡 Уникальное предложение:
+"Я не просто запускаю модели — я обеспечиваю их надёжную работу 24/7 
+в реальных условиях. Вы научитесь доводить AI-продукты до стабильного продакшена."
