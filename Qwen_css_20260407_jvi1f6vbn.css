@@ -1,7 +1,0 @@
-@media (orientation: landscape) and (max-height: 500px) {
-  .hero { padding: 0.75rem; }
-  .hero h1 { font-size: 1.75rem; }
-  .hero p { font-size: 0.95rem; }
-  .btn { padding: 0.5rem 1rem; font-size: 0.9rem; }
-  .section { padding: 1.5rem 0; }
-}

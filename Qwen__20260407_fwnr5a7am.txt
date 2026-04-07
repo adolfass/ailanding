@@ -1,7 +1,0 @@
-[ ] Валидация W3C: 0 ошибок, предупреждений < 5
-[ ] Адаптивность: корректное отображение на 4 тестовых устройствах
-[ ] Адаптация под orientation: landscape на мобильных
-[ ] Lighthouse: Performance ≥90, Accessibility ≥95, SEO ≥90
-[ ] Вес файла index.html < 500KB (без учёта внешних изображений)
-[ ] Все изображения имеют alt-тексты и loading="lazy" (кроме hero)
-[ ] JSON-LD Schema.org валиден (проверить через Rich Results Test)

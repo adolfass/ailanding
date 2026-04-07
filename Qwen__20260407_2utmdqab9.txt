@@ -1,7 +1,0 @@
-[ ] <html lang="ru">
-[ ] Meta title: ≤ 60 символов, содержит ключевые слова
-[ ] Meta description: ≤ 150 символов, продающий текст
-[ ] Meta viewport: <meta name="viewport" content="width=device-width, initial-scale=1.0">
-[ ] Open Graph: og:title, og:description, og:image, og:type, og:url
-[ ] JSON-LD Schema.org: @type Course + Offer (цена, валюта, доступность)
-[ ] Семантические теги: <article> для карточек, <time> для дат, <address> для контактов
