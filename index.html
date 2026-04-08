@@ -500,6 +500,67 @@
             margin: 0 auto;
         }
         
+        .modules-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 640px) {
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .modules-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        .module-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .module-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: var(--radius-full);
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+        
+        .module-card h4 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .module-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
         .btn {
             display: inline-flex;
             align-items: center;
@@ -727,6 +788,60 @@
             color: var(--text-primary);
         }
         
+        .expert-quote {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            background: rgba(139, 92, 246, 0.08);
+            border-left: 4px solid var(--accent);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+        }
+        
+        .expert-title {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .expert-achievements {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+            display: grid;
+            gap: 0.75rem;
+        }
+        
+        .expert-achievements li {
+            padding: 0.75rem 1rem;
+            background: rgba(34, 197, 94, 0.08);
+            border-radius: var(--radius-sm);
+            border-left: 3px solid #22c55e;
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .expert-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .expert-stack .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.4rem 0.8rem;
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: var(--radius-full);
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
         .tech-badges {
             display: flex;
             flex-wrap: wrap;
@@ -798,6 +913,93 @@
             color: var(--success);
             font-weight: 700;
             flex-shrink: 0;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 768px) {
+            .pricing-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .price-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+        
+        .price-card.popular {
+            border-color: var(--accent);
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(236, 72, 153, 0.05) 100%);
+        }
+        
+        .price-card.popular::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.35rem 0.75rem;
+            background: var(--accent-gradient);
+            color: #fff;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: var(--radius-full);
+        }
+        
+        .price-card h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .price-card .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-card .features {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .price-card .features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.5rem 0;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+        
+        .price-card .btn {
+            width: 100%;
+            margin-top: auto;
         }
         
         .corporate-section {
@@ -940,6 +1142,18 @@
                 flex-direction: row;
                 justify-content: center;
             }
+        }
+        
+        .btn-large {
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+        }
+        
+        .cta-note {
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-style: italic;
         }
         
         footer {
@@ -1198,70 +1412,65 @@
         </div>
     </section>
 
-    <section id="curriculum" class="section bg-secondary">
+    <section id="curriculum" class="section">
         <div class="container">
-            <h2>Программа курса</h2>
-            <div class="grid-3">
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №1: Основы LLM и AI-кодинг</h3>
-                    <p>Понимание принципов работы больших языковых моделей, промпт-инжиниринг, использование AI-ассистентов в разработке.</p>
+            <h2>Программа: 8 недель, 12 живых сессий</h2>
+            <p class="section-subtitle">Каждое занятие — совместная работа над архитектурой, кодом и деплоем ваших проектов</p>
+            
+            <div class="modules-grid">
+                <article class="module-card">
+                    <span class="status-badge">Сессия 1–2</span>
+                    <h4>AI-Архитектура и спецификация</h4>
+                    <p>Проектируем ТЗ в формате .md, декомпозируем сложные системы, выбираем паттерны для ИИ-генерации.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №2: Архитектура AI-приложений</h3>
-                    <p>Проектирование масштабируемых систем с интеграцией ИИ-компонентов, выбор архитектурных паттернов для AI-приложений.</p>
+                <article class="module-card">
+                    <span class="status-badge">Сессия 3–4</span>
+                    <h4>Промпт-инжиниринг и генерация кода</h4>
+                    <p>Шаблоны запросов для фронтенда/бэкенда/БД. Учимся итеративно генерировать, проверять и рефакторить.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №3: Docker для ML</h3>
-                    <p>Упаковка моделей машинного обучения в контейнеры, оптимизация образов, лучшие практики деплоя ML-моделей.</p>
+                <article class="module-card">
+                    <span class="status-badge">Сессия 5</span>
+                    <h4>UI/UX и механики взаимодействия</h4>
+                    <p>Проектируем интерфейсы под возможности ИИ. Сценарии пользователя, адаптивность, Figma → код.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №4: Kubernetes для CV-сервисов</h3>
-                    <p>Развертывание и управление компьютерным зрением в продакшене с помощью Kubernetes, масштабирование и мониторинг.</p>
+                <article class="module-card">
+                    <span class="status-badge">Сессия 6</span>
+                    <h4>Генерация ассетов и медиа</h4>
+                    <p>Midjourney/DALL-E для продакшена. Оптимизация, лицензирование, интеграция в интерфейс и лендинг.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №5: Мониторинг AI-систем</h3>
-                    <p>Настройка систем мониторинга для отслеживания производительности моделей, обнаружения дрейфа и аномалий.</p>
+                <article class="module-card">
+                    <span class="status-badge">Сессия 7</span>
+                    <h4>Сборка проекта и рефакторинг</h4>
+                    <p>Интеграция модулей, разрешение зависимостей, Git-воркфлоу для соло-разработчика.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №6: CI/CD для ML</h3>
-                    <p>Построение пайплайнов непрерывной интеграции и доставки для машинного обучения, автоматическое переобучение моделей.</p>
+                <article class="module-card">
+                    <span class="status-badge">Сессия 8</span>
+                    <h4>Веб-приложения и SaaS</h4>
+                    <p>Авторизация, платежи, админки, роли, аналитика. Деплой и настройка окружения.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №7: Работа с данными</h3>
-                    <p>Эффективное управление данными для ML: ETL-процессы, версионирование наборов данных, обеспечение качества.</p>
+                <article class="module-card">
+                    <span class="status-badge">Сессия 9</span>
+                    <h4>Mobile & MiniApps</h4>
+                    <p>PWA, Telegram Mini Apps, офлайн-режим, пуш-уведомления, сторовые требования.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №8: Оптимизация инференса</h3>
-                    <p>Техники ускорения работы моделей: квантизация, приведение к низкой точности, использование специализированного железа.</p>
+                <article class="module-card">
+                    <span class="status-badge">Сессия 10</span>
+                    <h4>MCP-серверы и AI-агенты</h4>
+                    <p>Model Context Protocol, кастомные тулзы, оркестрация, безопасность вызовов, логирование.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №9: SLO/SLA для AI</h3>
-                    <p>Обеспечение надежной работы AI-систем в продакшене: определение целевых показателей, планирование емкости.</p>
+                <article class="module-card">
+                    <span class="status-badge">Сессия 11</span>
+                    <h4>DevOps и CI/CD</h4>
+                    <p>Docker, оркестрация, пайплайны сборки, тестирования и выката. Мониторинг и SLA.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status recording">В записи</span>
-                    <h3>Тема №10: Диагностика инцидентов</h3>
-                    <p>Системный подход к поиску и устранению неисправностей в AI-приложениях, распределенная трассировка.</p>
+                <article class="module-card">
+                    <span class="status-badge">Сессия 12</span>
+                    <h4>Надёжность, безопасность и запуск</h4>
+                    <p>Аудит ИИ-кода, резервное копирование, инцидент-менеджмент, маркетинг и монетизация MVP.</p>
                 </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №11: Документация и онбординг</h3>
-                    <p>Создание эффективной технической документации для AI-систем, процессы ввода новых членов команды.</p>
-                </article>
-                <article class="card">
-                    <span class="module-status">Новый</span>
-                    <h3>Тема №12: Финальный проект</h3>
-                    <p>Практическое применение всех полученных знаний: создание и деплой собственного AI-приложения.</p>
-                </article>
+            </div>
+        </div>
+    </section>
             </div>
         </div>
     </section>
@@ -1304,101 +1513,92 @@
         </div>
     </section>
 
-    <section class="section bg-secondary">
+    <section id="expert" class="section">
         <div class="container">
-            <h2>Ваш наставник</h2>
-            <div class="expert-card card">
+            <h2>Кто ведёт</h2>
+            <div class="expert-card">
                 <div class="expert-photo">
-                    <div class="expert-photo-placeholder">РБ</div>
+                    <img src="expert.jpg" alt="Роман Богданов" loading="lazy" width="200" height="200">
                 </div>
                 <div class="expert-info">
                     <h3>Роман Богданов</h3>
-                    <p>Инженер по надёжности AI-систем | DevOps | CV</p>
+                    <p class="expert-title">Инженер по надёжности AI-систем | DevOps | Computer Vision</p>
+                    
+                    <blockquote class="expert-quote">
+                        «Я не продаю видеозаписи и не ставлю оценки. Моя задача — дать вам рабочую архитектуру, показать, как заставить ИИ генерировать код под ваши задачи, и помочь запустить проект, который не упадёт под нагрузкой. 8 недель плотной работы вживую — и у вас есть готовый продукт, а не сертификат в рамке.»
+                    </blockquote>
+
                     <div class="expert-links">
-                        <a href="https://spb.hh.ru/resume/632885bfff00de70d90039ed1f354333647341" target="_blank" rel="noopener" class="link-item">
-                            Резюме на hh.ru
-                        </a>
-                        <a href="https://romambo.ru/" target="_blank" rel="noopener" class="link-item">
-                            romambo.ru
-                        </a>
-                        <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="link-item">
-                            @itforbisness
-                        </a>
-                        <a href="https://github.com/adolfass?tab=repositories" target="_blank" rel="noopener" class="link-item">
-                            GitHub
-                        </a>
+                        <a href="https://spb.hh.ru/resume/632885bfff00de70d90039ed1f354333647341" target="_blank" rel="noopener" class="link-item">📄 Резюме на hh.ru</a>
+                        <a href="https://romambo.ru/" target="_blank" rel="noopener" class="link-item">🌐 romambo.ru</a>
+                        <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="link-item">💬 @itforbisness</a>
+                        <a href="https://github.com/adolfass?tab=repositories" target="_blank" rel="noopener" class="link-item">💻 GitHub</a>
                     </div>
-                    <div class="achievements">
-                        <div class="achievement-item">
-                            <span>15+</span>
-                            <p><strong>лет в ИТ</strong>2+ в AI-инженерии</p>
-                        </div>
-                        <div class="achievement-item">
-                            <span>+5%</span>
-                            <p><strong>SLA</strong>Улучшил показатели</p>
-                        </div>
-                        <div class="achievement-item">
-                            <span>-25%</span>
-                            <p><strong>алертов</strong>Ложных срабатываний</p>
-                        </div>
-                        <div class="achievement-item">
-                            <span>AI</span>
-                            <p><strong>инфраструктура</strong>Построил с нуля</p>
-                        </div>
-                    </div>
-                    <div class="tech-badges">
-                        <span class="tech-badge">Kubernetes</span>
-                        <span class="tech-badge">Docker</span>
-                        <span class="tech-badge">Zabbix</span>
-                        <span class="tech-badge">GitLab</span>
-                        <span class="tech-badge">Linux</span>
-                        <span class="tech-badge">CV</span>
-                        <span class="tech-badge">LLM</span>
+
+                    <ul class="expert-achievements">
+                        <li>✅ 15+ лет в ИТ-инфраструктуре, 2+ года в production AI</li>
+                        <li>✅ Улучшил SLA на 5% в промышленной CV-системе</li>
+                        <li>✅ Снизил ложные алерты мониторинга на 25%</li>
+                        <li>✅ Построил ИТ-инфраструктуру с нуля для распределённых сетей</li>
+                    </ul>
+
+                    <div class="expert-stack">
+                        <span class="badge">AI-Архитектура</span>
+                        <span class="badge">Kubernetes</span>
+                        <span class="badge">Docker</span>
+                        <span class="badge">CI/CD</span>
+                        <span class="badge">Linux</span>
+                        <span class="badge">LLM-Интеграции</span>
+                        <span class="badge">Live Engineering</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="pricing" class="section bg-gradient">
+    <section id="pricing" class="section">
         <div class="container">
-            <h2>Выберите формат участия</h2>
-            <div class="grid-3">
-                <article class="card pricing-card">
-                    <h3>Старт</h3>
-                    <p class="price">44 900 ₽</p>
-                    <ul>
-                        <li>Доступ ко всем видеоурокам</li>
-                        <li>Домашние задания с автопроверкой</li>
-                        <li>Доступ в общий чат</li>
-                        <li>Сертификат об окончании</li>
+            <h2>Формат участия</h2>
+            <p class="section-subtitle">Места в группах ограничены. Запись ведётся на ближайший поток.</p>
+            
+            <div class="pricing-grid">
+                <article class="price-card">
+                    <h3>Участник</h3>
+                    <div class="price">44 900 ₽</div>
+                    <ul class="features">
+                        <li>✅ Участие во всех 12 живых сессиях</li>
+                        <li>✅ Доступ в закрытый чат группы</li>
+                        <li>✅ Шаблоны .md, чек-листы, пайплайны</li>
+                        <li>✅ Общие разборы архитектуры и кода</li>
                     </ul>
-                    <button class="btn btn-secondary">Выбрать</button>
+                    <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-secondary">Забронировать место</a>
                 </article>
-                <article class="card pricing-card">
-                    <span class="badge popular">Популярный</span>
-                    <h3>Профи</h3>
-                    <p class="price">69 900 ₽</p>
-                    <ul>
-                        <li>Всё из "Старт" +</li>
-                        <li>Проверка ДЗ экспертом</li>
-                        <li>2 групповые консультации</li>
-                        <li>Доступ к закрытым материалам</li>
-                        <li>Приоритетная поддержка</li>
+
+                <article class="price-card popular">
+                    <span class="popular-badge">Рекомендуется</span>
+                    <h3>Приоритетный</h3>
+                    <div class="price">69 900 ₽</div>
+                    <ul class="features">
+                        <li>✅ Всё из тарифа «Участник»</li>
+                        <li>✅ 2 персональных разбора вашего проекта</li>
+                        <li>✅ Приоритетная обратная связь в чате</li>
+                        <li>✅ Расширенные шаблоны деплоя и мониторинга</li>
+                        <li>✅ Поддержка 1 месяц после курса</li>
                     </ul>
-                    <button class="btn btn-primary">Выбрать</button>
+                    <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-primary">Забронировать место</a>
                 </article>
-                <article class="card pricing-card">
-                    <h3>Бизнес</h3>
-                    <p class="price">По запросу <span class="price-note">для команд</span></p>
-                    <ul>
-                        <li>Всё из "Профи" +</li>
-                        <li>Персональная программа</li>
-                        <li>Выделенный менеджер</li>
-                        <li>Документы для юрлиц</li>
-                        <li>Пост-курсовая поддержка</li>
+
+                <article class="price-card">
+                    <h3>Корпоративный</h3>
+                    <div class="price">По запросу</div>
+                    <ul class="features">
+                        <li>✅ Выделенная группа под вашу команду</li>
+                        <li>✅ Адаптация стека и задач под бизнес</li>
+                        <li>✅ Индивидуальные KPI и отчётность</li>
+                        <li>✅ Документы для юрлиц, договор, акт</li>
+                        <li>✅ Пост-поддержка 3 месяца</li>
                     </ul>
-                    <button class="btn btn-secondary">Связаться</button>
+                    <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-secondary">Обсудить условия</a>
                 </article>
             </div>
         </div>
@@ -1444,79 +1644,35 @@
         </div>
     </section>
 
-    <section class="section bg-secondary">
+    <section id="faq" class="section">
         <div class="container">
             <h2>Частые вопросы</h2>
-            <div class="faq">
+            <div class="faq-list">
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Нужен ли опыт в AI для старта?
-                    </button>
-                    <div class="faq-answer" hidden>
-                        Нет, курс рассчитан на начинающих в области AI. Мы начинаем с основ и постепенно переходим к продвинутым темам. Базовые знания программирования будут полезны, но не обязательны.
-                    </div>
+                    <button class="faq-question" aria-expanded="false">Будут ли записи занятий?</button>
+                    <div class="faq-answer" hidden>Нет. Формат — живая инженерная работа. Ценность в реальном времени: вопросы, ответы, совместное решение проблем, правки кода на лету. Материалы и план действий сохраняются в репозитории группы.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Сколько времени нужно уделять курсу в неделю?
-                    </button>
-                    <div class="faq-answer" hidden>
-                        Рекомендуется уделять 8-10 часов в неделю на просмотр лекций, выполнение домашних заданий и участие в групповых консультациях.
-                    </div>
+                    <button class="faq-question" aria-expanded="false">Как проходит обратная связь?</button>
+                    <div class="faq-answer" hidden>На каждой сессии мы разбираем проекты участников. Я указываю на архитектурные риски, помогаю исправить баги, оптимизирую запросы к ИИ и настраиваю деплой. В чате отвечаю на точечные вопросы между занятиями.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Что если пропущу живой вебинар?
-                    </button>
-                    <div class="faq-answer" hidden>
-                        Все занятия записываются и доступны в личном кабинете навсегда. Вы можете смотреть их в удобное время и задавать вопросы в чате или на следующей консультации.
-                    </div>
+                    <button class="faq-question" aria-expanded="false">Что если я пропущу занятие?</button>
+                    <div class="faq-answer" hidden>Вы сможете наверстать по материалам группы и записям разборов в чате. Но основная ценность — в живом взаимодействии. Рекомендуем планировать участие заранее.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Есть ли рассрочка оплаты?
-                    </button>
-                    <div class="faq-answer" hidden>
-                        Да, мы предоставляем возможность оплаты в рассрочку до 4 месяцев без процентов через наши партнерские банки.
-                    </div>
+                    <button class="faq-question" aria-expanded="false">Нужен ли опыт программирования?</button>
+                    <div class="faq-answer" hidden>Достаточно понимания логики систем, сетей и базового синтаксиса. Я даю архитектурные паттерны и инструменты, которые закрывают пробелы в коде. Главное — готовность работать над своим проектом.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Как проходит проверка домашних заданий?
-                    </button>
-                    <div class="faq-answer" hidden>
-                        Домашние задания проверяются экспертом курса с подробной обратной связью. Для практических задач предоставляются автотесты и примеры решений.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Получу ли я сертификат?
-                    </button>
-                    <div class="faq-answer" hidden>
-                        Да, все выпускники получают сертификат об окончании курса с указанием пройденных модулей и часов обучения. Сертификат проверяется через специальный верификатор на нашем сайте.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Можно ли оплатить от юридического лица?
-                    </button>
-                    <div class="faq-answer" hidden>
-                        Да, мы работаем с юридическими лицами и предоставляем все необходимые закрывающие документы: договор, счет, акт оказанных услуг.
-                    </div>
-                </div>
-                <div class="faq-item">
-                    <button class="faq-question" aria-expanded="false">
-                        Что нужно для доступа к материалам?
-                    </button>
-                    <div class="faq-answer" hidden>
-                        Достаточно иметь устройство с выходом в интернет и браузер. Все материалы размещены в нашей обучающей платформе, доступной по логину и паролю после оплаты.
-                    </div>
+                    <button class="faq-question" aria-expanded="false">Сколько человек в группе?</button>
+                    <div class="faq-answer" hidden>От 5 до 7 человек. Это позволяет уделить время каждому проекту, сохранить динамику и избежать формата «лекция + слушатели».</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="cta-section section">
+    <section id="cta-final" class="section cta-section">
         <div class="floating-orbs">
             <div class="orb orb-1"></div>
             <div class="orb orb-2"></div>
@@ -1526,12 +1682,10 @@
             <div class="orb orb-6"></div>
         </div>
         <div class="container">
-            <h2>Готовы запустить AI в продакшен?</h2>
-            <p>Начните обучение сегодня — первые уроки уже доступны</p>
-            <div class="cta-buttons">
-                <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Написать в Telegram</a>
-                <a href="https://spb.hh.ru/resume/632885bfff00de70d90039ed1f354333647341" target="_blank" rel="noopener" class="btn btn-secondary btn-lg">Есть вопросы? Резюме эксперта</a>
-            </div>
+            <h2>Готовы собрать продукт, а не смотреть записи?</h2>
+            <p>Места в группах ограничены. Запишитесь на ближайшее занятие — и за 8 недель у вас будет рабочий проект, а не папка с теорией.</p>
+            <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-primary btn-large">Написать в @itforbisness</a>
+            <p class="cta-note">Без спама. Без академической воды. Только архитектура, код и деплой.</p>
         </div>
     </section>
 
