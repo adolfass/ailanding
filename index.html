@@ -405,6 +405,101 @@
             line-height: 1.6;
         }
         
+        .section-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        
+        .outcomes-grid {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+        
+        @media (min-width: 640px) {
+            .outcomes-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .outcomes-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .outcome-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .outcome-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .outcome-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(139, 92, 246, 0.3);
+        }
+        
+        .outcome-card:hover::before {
+            opacity: 1;
+        }
+        
+        .outcome-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .outcome-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            color: var(--text-primary);
+        }
+        
+        .outcome-card p {
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        
+        .outcomes-cta {
+            margin-top: 3rem;
+            padding: 1.5rem 2rem;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: var(--radius-lg);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            text-align: center;
+        }
+        
+        .outcomes-cta p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.6;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
         .btn {
             display: inline-flex;
             align-items: center;
@@ -1055,6 +1150,50 @@
                     <h3>Непрерывная обратная связь</h3>
                     <p>Разборы кода, поиск узких мест, правки архитектуры, отладка запросов к ИИ. «Допиливаем напильником» до продакшена.</p>
                 </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="outcomes" class="section">
+        <div class="container">
+            <h2>Что вы сможете делать после курса</h2>
+            <p class="section-subtitle">Конкретные навыки, которые можно применить сразу — в работе или в своём проекте</p>
+            
+            <div class="outcomes-grid">
+                <article class="outcome-card">
+                    <div class="outcome-icon">🚀</div>
+                    <h3>Создавать лендинги с нуля</h3>
+                    <p>Технически рабочий, адаптивный, с формами, аналитикой и интеграциями. Готов к приёму трафика.</p>
+                </article>
+                <article class="outcome-card">
+                    <div class="outcome-icon">🌐</div>
+                    <h3>Разворачивать сайты и веб-приложения</h3>
+                    <p>От прототипа до продакшена: домен, хостинг, SSL, CI/CD, мониторинг. Всё под вашим контролем.</p>
+                </article>
+                <article class="outcome-card">
+                    <div class="outcome-icon">🤖</div>
+                    <h3>Запускать ботов для соцсетей</h3>
+                    <p>Telegram, VK, Discord: логика, интеграции с БД, админ-панель, обработка ошибок и масштабирование.</p>
+                </article>
+                <article class="outcome-card">
+                    <div class="outcome-icon">🔧</div>
+                    <h3>Поддерживать и развивать продукт</h3>
+                    <p>Диагностика инцидентов, обновление функционала, оптимизация производительности, бэкапы.</p>
+                </article>
+                <article class="outcome-card">
+                    <div class="outcome-icon">💼</div>
+                    <h3>Реализовать себя на рынке труда</h3>
+                    <p>Портфолио из рабочих проектов, понимание полного цикла, уверенность в технических собеседованиях.</p>
+                </article>
+                <article class="outcome-card">
+                    <div class="outcome-icon">💡</div>
+                    <h3>Воплощать свои идеи</h3>
+                    <p>От концепции до MVP: вы больше не зависите от команды. Вы сами собираете продукт под свою задачу.</p>
+                </article>
+            </div>
+
+            <div class="outcomes-cta">
+                <p>Это не «сертификат о прохождении». Это реальные навыки, которые можно показать в портфолио и использовать в работе с первого дня.</p>
             </div>
         </div>
     </section>
