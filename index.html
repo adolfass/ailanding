@@ -219,14 +219,14 @@
             }
         }
         
-        .hero {
+        .hero-section {
             padding: 8rem 0 6rem;
             background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             position: relative;
             overflow: hidden;
         }
         
-        .hero::before {
+        .hero-section::before {
             content: '';
             position: absolute;
             top: -100%;
@@ -256,41 +256,35 @@
             }
         }
         
-        .hero .container {
+        .hero-section .container {
             max-width: 800px;
+            position: relative;
+            z-index: 1;
         }
         
-        .hero p {
-            font-size: 1.25rem;
+        .hero-section h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.35rem;
+            color: var(--text-primary);
+            margin-bottom: 1.25rem;
+            font-weight: 500;
+        }
+        
+        .hero-desc {
+            font-size: 1.1rem;
             color: var(--text-secondary);
             margin-bottom: 2rem;
             max-width: 600px;
+            line-height: 1.7;
         }
         
-        .hero-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .hero-meta span {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        .hero-meta span::before {
-            content: '';
-            width: 8px;
-            height: 8px;
-            background: var(--accent-gradient);
-            border-radius: 50%;
-        }
-        
-        .hero-actions {
+        .hero-cta {
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
@@ -1013,7 +1007,7 @@
     </style>
 </head>
 <body>
-    <section id="hero" class="hero section">
+    <section id="hero" class="hero-section">
         <div class="floating-orbs">
             <div class="orb orb-1"></div>
             <div class="orb orb-2"></div>
@@ -1024,15 +1018,15 @@
         </div>
         <div class="container">
             <h1>AI-Архитектор: от идеи до запущенного продукта</h1>
-            <p>Живые инженерные сессии в группах до 7 человек. Без записей. Без теории ради теории.</p>
-            <p>8 недель плотной работы вживую. Ваш проект, моя архитектура, инструменты и пайплайн. Мы проектируем, пишем, чиним баги и выкатываем в продакшен.</p>
-            <div class="hero-meta">
-                <span>Формат: Живые сессии вZoom</span>
-                <span>Группа: до 7 человек</span>
-            </div>
-            <div class="hero-actions">
+            <p class="hero-subtitle">Живые инженерные сессии в группах до 7 человек</p>
+            <p class="hero-desc">
+                За 8 недель вы создадите рабочий проект: лендинг, сайт, бота или MVP. 
+                Научитесь разворачивать, поддерживать и развивать его самостоятельно. 
+                Без записей, без теории ради теории — только практика под руководством.
+            </p>
+            <div class="hero-cta">
                 <a href="https://t.me/itforbisness" target="_blank" rel="noopener" class="btn btn-primary">Забронировать место в группе</a>
-                <a href="#how-it-works" class="btn btn-secondary">Как проходят занятия</a>
+                <a href="#outcomes" class="btn btn-secondary">Что вы получите</a>
             </div>
         </div>
     </section>
