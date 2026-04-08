@@ -413,6 +413,60 @@
             margin: 0 auto 3rem;
         }
         
+        .journey-path {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 0.5rem 1rem;
+            margin-top: 2rem;
+        }
+        
+        .journey-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 1.25rem;
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            min-width: 120px;
+            transition: all 0.3s ease;
+        }
+        
+        .journey-step:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent);
+            box-shadow: 0 8px 24px rgba(139, 92, 246, 0.2);
+        }
+        
+        .journey-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .journey-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+        
+        .journey-arrow {
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        @media (max-width: 768px) {
+            .journey-path {
+                gap: 1rem;
+            }
+            .journey-arrow {
+                transform: rotate(90deg);
+            }
+        }
+        
         .outcomes-grid {
             display: grid;
             gap: 1.5rem;
@@ -1378,6 +1432,45 @@
                     <h3>Непрерывная обратная связь</h3>
                     <p>Разборы кода, поиск узких мест, правки архитектуры, отладка запросов к ИИ. «Допиливаем напильником» до продакшена.</p>
                 </article>
+            </div>
+        </div>
+    </section>
+
+    <section id="journey" class="section bg-secondary">
+        <div class="container">
+            <h2>Путь от идеи до продакшена</h2>
+            <p class="section-subtitle">За 8 недель вы пройдёте полный цикл создания и запуска продукта</p>
+            
+            <div class="journey-path">
+                <div class="journey-step">
+                    <div class="journey-icon">💡</div>
+                    <div class="journey-label">Идея</div>
+                </div>
+                <div class="journey-arrow">→</div>
+                <div class="journey-step">
+                    <div class="journey-icon">📝</div>
+                    <div class="journey-label">Архитектура (.md)</div>
+                </div>
+                <div class="journey-arrow">→</div>
+                <div class="journey-step">
+                    <div class="journey-icon">🤖</div>
+                    <div class="journey-label">Генерация кода (ИИ)</div>
+                </div>
+                <div class="journey-arrow">→</div>
+                <div class="journey-step">
+                    <div class="journey-icon">🔧</div>
+                    <div class="journey-label">Сборка</div>
+                </div>
+                <div class="journey-arrow">→</div>
+                <div class="journey-step">
+                    <div class="journey-icon">🚀</div>
+                    <div class="journey-label">Деплой</div>
+                </div>
+                <div class="journey-arrow">→</div>
+                <div class="journey-step">
+                    <div class="journey-icon">📊</div>
+                    <div class="journey-label">Поддержка</div>
+                </div>
             </div>
         </div>
     </section>
